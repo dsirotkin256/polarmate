@@ -9,6 +9,7 @@ void print_1digit();
 void print_2digit();
 void print_3digit();
 void print_4digit();
+void print_err();
 
 void print_seg_digit(const unsigned char);
 void seg_print_minus();
@@ -23,9 +24,14 @@ void seg_print_6();
 void seg_print_7();
 void seg_print_8();
 void seg_print_9();
+void seg_print_e();
+void seg_print_r();
 
 void on_digit_slot(const unsigned char);
 void off_all_digit_slots();
+
+const int MAX_DIGIT_SIGN = 4;
+const int MAX_DECEMAL_SIGN = 1;
 
 // turn on slots
 void on_digit_slot(const unsigned char n) {
@@ -38,9 +44,19 @@ void on_digit_slot(const unsigned char n) {
 		break;
 		case 1: print_1digit();
 		break;
-		default: off_all_digit_slots();
+		default: print_err();
 		return;
 	}
+}
+
+void print_err() {
+	print_3digit();
+	seg_print_e();
+	print_2digit();
+	seg_print_r();
+	print_1digit();
+	seg_print_r();
+	Serial.println("ERROR");
 }
 
 void off_all_digit_slots() {
@@ -99,7 +115,7 @@ void print_seg_digit(const unsigned char n) {
 		case 9: seg_print_9();
 		break;
 		default: seg_print_0();
-		return;
+		break;
 	}
 }
 
@@ -112,6 +128,7 @@ void seg_print_dot() {
 	digitalWrite(seg_e, LOW);
 	digitalWrite(seg_f, LOW);
 	digitalWrite(dot, HIGH);
+	delay(3);
 }
 
 void seg_print_minus() {
@@ -123,6 +140,7 @@ void seg_print_minus() {
 	digitalWrite(seg_e, LOW);
 	digitalWrite(seg_f, LOW);
 	digitalWrite(dot, LOW);
+	delay(7);
 }
 void seg_print_0() {
 	digitalWrite(seg_a, HIGH);
@@ -133,6 +151,7 @@ void seg_print_0() {
 	digitalWrite(seg_f, HIGH);
 	digitalWrite(seg_g, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_1() {
 	digitalWrite(seg_b, HIGH);
@@ -143,6 +162,7 @@ void seg_print_1() {
 	digitalWrite(seg_f, LOW);
 	digitalWrite(seg_g, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_2() {
 	digitalWrite(seg_a, HIGH);
@@ -153,6 +173,7 @@ void seg_print_2() {
 	digitalWrite(seg_c, LOW);
 	digitalWrite(seg_f, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_3() {
 	digitalWrite(seg_a, HIGH);
@@ -163,6 +184,7 @@ void seg_print_3() {
 	digitalWrite(seg_e, LOW);
 	digitalWrite(seg_f, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_4() {
 	digitalWrite(seg_b, HIGH);
@@ -173,6 +195,7 @@ void seg_print_4() {
 	digitalWrite(seg_d, LOW);
 	digitalWrite(seg_e, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_5() {
 	digitalWrite(seg_a, HIGH);
@@ -183,6 +206,7 @@ void seg_print_5() {
 	digitalWrite(seg_b, LOW);
 	digitalWrite(seg_e, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_6() {
 	digitalWrite(seg_a, HIGH);
@@ -193,6 +217,7 @@ void seg_print_6() {
 	digitalWrite(seg_g, HIGH);
 	digitalWrite(seg_b, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_7() {
 	digitalWrite(seg_a, HIGH);
@@ -203,6 +228,7 @@ void seg_print_7() {
 	digitalWrite(seg_f, LOW);
 	digitalWrite(seg_g, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_8() {
 	digitalWrite(seg_a, HIGH);
@@ -213,6 +239,7 @@ void seg_print_8() {
 	digitalWrite(seg_f, HIGH);
 	digitalWrite(seg_g, HIGH);
 	digitalWrite(dot, LOW);
+	delay(3);
 }
 void seg_print_9() {
 	digitalWrite(seg_a, HIGH);
@@ -223,6 +250,31 @@ void seg_print_9() {
 	digitalWrite(seg_g, HIGH);
 	digitalWrite(seg_e, LOW);
 	digitalWrite(dot, LOW);
+	delay(3);
+}
+
+void seg_print_e() {
+	digitalWrite(seg_a, HIGH);
+	digitalWrite(seg_b, LOW);
+	digitalWrite(seg_c, LOW);
+	digitalWrite(seg_d, HIGH);
+	digitalWrite(seg_f, HIGH);
+	digitalWrite(seg_g, HIGH);
+	digitalWrite(seg_e, HIGH);
+	digitalWrite(dot, LOW);
+	delay(5);
+}
+
+void seg_print_r() {
+	digitalWrite(seg_a, HIGH);
+	digitalWrite(seg_b, LOW);
+	digitalWrite(seg_c, LOW);
+	digitalWrite(seg_d, LOW);
+	digitalWrite(seg_f, HIGH);
+	digitalWrite(seg_g, LOW);
+	digitalWrite(seg_e, HIGH);
+	digitalWrite(dot, LOW);
+	delay(5);
 }
 
 #endif // SEGMENT_DISPLAY_H
