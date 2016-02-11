@@ -6,4 +6,5 @@ Thermometer implementation on Arduino Board using seven-segment display and ther
 + Seven-segment display
 + Thermistor (10k Ω)
 
-![alt text](https://www.dropbox.com/s/tfrlbs2x3z4rryw/thermo.jpeg "Final representaton")
+
+![alt info](https://github.com/nrdwnd/Thermometer-Arduino/blob/master/.readme_material/thermo.jpeg)
