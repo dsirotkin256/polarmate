@@ -1,7 +1,7 @@
 # Thermometer-Arduino
 Thermometer implementation on Arduino Board using seven-segment display and thermistor.
 
-###Requirements:
+### Requirements:
 + Arduino Board Uno
 + Seven-segment display
 + Thermistor (10k Ω)
